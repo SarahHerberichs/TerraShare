@@ -102,4 +102,36 @@ document.addEventListener("DOMContentLoaded", function () {
   /*----------------------------------------------------------------------------------------------------------------*/
   /*----------------------------------------------------------------------------------------------------------------*/
   /*----------------------------------------------------------------------------------------------------------------*/
+
+  // Détection des gestes tactiles
+  let startX;
+
+  popupImageContainer.addEventListener("touchstart", function (event) {
+    startX = event.touches[0].clientX;
+  });
+
+  popupImageContainer.addEventListener("touchmove", function (event) {
+    if (!startX) {
+      return;
+    }
+
+    let moveX = event.touches[0].clientX;
+    let diffX = startX - moveX;
+
+    // Seuil pour considérer le mouvement comme un glissement
+    if (Math.abs(diffX) > 30) {
+      if (diffX > 0) {
+        // Glissement vers la gauche
+        nextImage();
+      } else {
+        // Glissement vers la droite
+        prevImage();
+      }
+      startX = null; // Réinitialiser la valeur de startX pour éviter des glissements multiples
+    }
+  });
+
+  popupImageContainer.addEventListener("touchend", function () {
+    startX = null;
+  });
 });

@@ -16,12 +16,10 @@
 
 
 -- Listage de la structure de la base pour app_terrashare
-DROP DATABASE IF EXISTS `app_terrashare`;
-CREATE DATABASE IF NOT EXISTS `app_terrashare` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `app_terrashare`;
-
+-- CREATE DATABASE IF NOT EXISTS `app_terrashare` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- USE `app_terrashare`;
+////////////////OK
 -- Listage de la structure de table app_terrashare. ads
-DROP TABLE IF EXISTS `ads`;
 CREATE TABLE IF NOT EXISTS `ads` (
   `id` int NOT NULL AUTO_INCREMENT,
   `city_id` int DEFAULT NULL,
@@ -45,12 +43,11 @@ CREATE TABLE IF NOT EXISTS `ads` (
   CONSTRAINT `FK_7EC9F6208BAC62AF` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
   CONSTRAINT `FK_7EC9F620A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_7EC9F620C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+///////////////////////OK
 -- Listage de la structure de table app_terrashare. cities
-DROP TABLE IF EXISTS `cities`;
 CREATE TABLE IF NOT EXISTS `cities` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -60,9 +57,8 @@ CREATE TABLE IF NOT EXISTS `cities` (
 ) ENGINE=InnoDB AUTO_INCREMENT=191361 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+////////////////OK
 -- Listage de la structure de table app_terrashare. conversation
-DROP TABLE IF EXISTS `conversation`;
 CREATE TABLE IF NOT EXISTS `conversation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `ad_id` int DEFAULT NULL,
@@ -72,15 +68,14 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   KEY `IDX_8A8E26E94F34D596` (`ad_id`),
   KEY `IDX_8A8E26E956AE248B` (`user1_id`),
   KEY `IDX_8A8E26E9441B8B65` (`user2_id`),
-  CONSTRAINT `FK_8A8E26E9441B8B65` FOREIGN KEY (`user2_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_8A8E26E94F34D596` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`),
-  CONSTRAINT `FK_8A8E26E956AE248B` FOREIGN KEY (`user1_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FK_8A8E26E9441B8B65` FOREIGN KEY (`user2_id`) REFERENCES `user` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_8A8E26E94F34D596` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_8A8E26E956AE248B` FOREIGN KEY (`user1_id`) REFERENCES `user` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+//////////////OK
 -- Listage de la structure de table app_terrashare. departments
-DROP TABLE IF EXISTS `departments`;
 CREATE TABLE IF NOT EXISTS `departments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -90,9 +85,8 @@ CREATE TABLE IF NOT EXISTS `departments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+/////////////////////OK
 -- Listage de la structure de table app_terrashare. doctrine_migration_versions
-DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
@@ -101,9 +95,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+//////////////////////OK
 -- Listage de la structure de table app_terrashare. message
-DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sender_id` int DEFAULT NULL,
@@ -119,16 +112,15 @@ CREATE TABLE IF NOT EXISTS `message` (
   KEY `IDX_B6BD307FCD53EDB6` (`receiver_id`),
   KEY `IDX_B6BD307F4F34D596` (`ad_id`),
   KEY `IDX_B6BD307F9AC0396` (`conversation_id`),
-  CONSTRAINT `FK_B6BD307F4F34D596` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`),
+  CONSTRAINT `FK_B6BD307F4F34D596` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_B6BD307F9AC0396` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`),
   CONSTRAINT `FK_B6BD307FCD53EDB6` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_B6BD307FF624B39D` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FK_B6BD307FF624B39D` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+////////OK
 -- Listage de la structure de table app_terrashare. messenger_messages
-DROP TABLE IF EXISTS `messenger_messages`;
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -144,9 +136,8 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+////////////////////OK
 -- Listage de la structure de table app_terrashare. photos
-DROP TABLE IF EXISTS `photos`;
 CREATE TABLE IF NOT EXISTS `photos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -154,12 +145,11 @@ CREATE TABLE IF NOT EXISTS `photos` (
   PRIMARY KEY (`id`),
   KEY `IDX_876E0D94F34D596` (`ad_id`),
   CONSTRAINT `FK_876E0D94F34D596` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+////////////////////OK
 -- Listage de la structure de table app_terrashare. status
-DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -167,9 +157,8 @@ CREATE TABLE IF NOT EXISTS `status` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+/////////////////OK
 -- Listage de la structure de table app_terrashare. transaction
-DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -177,9 +166,8 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
-
+///////////OK
 -- Listage de la structure de table app_terrashare. type
-DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -187,9 +175,22 @@ CREATE TABLE IF NOT EXISTS `type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
+///////////////////////////
+-- Listage de la structure de table app_terrashare. type_transaction
+CREATE TABLE IF NOT EXISTS `type_transaction` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type_id` int DEFAULT NULL,
+  `transaction_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_392ED240C54C8C93` (`type_id`),
+  KEY `IDX_392ED2402FC0CB0F` (`transaction_id`),
+  CONSTRAINT `FK_392ED2402FC0CB0F` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`),
+  CONSTRAINT `FK_392ED240C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Les données exportées n'étaient pas sélectionnées.
+//////OK
 -- Listage de la structure de table app_terrashare. user
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -199,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pseudo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
 

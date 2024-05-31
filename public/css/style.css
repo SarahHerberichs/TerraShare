@@ -396,26 +396,28 @@ form {
 }
 
 .popup-image {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 80%;
+  max-height: 80%;
   margin: auto;
 }
 
 .arrow {
   color: white;
-  font-size: 24px;
   cursor: pointer;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-25%);
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 0.5em;
 }
 
 #prevArrow {
-  left: 70px;
+  left: 2.5em;
 }
 
 #nextArrow {
-  right: 70px;
+  right: 2.5em;
 }
 
 .footer {
