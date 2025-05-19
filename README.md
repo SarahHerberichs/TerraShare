@@ -1,4 +1,5 @@
-Réalisation Perso - Réalisé en Symfony et JS + CSS & Bootstrap.
+https://terrashare.fr
+[Réalisation Perso - Réalisé en Symfony et JS + CSS & Bootstrap.
 
 Site de mise en relation, petites annonces.
 La relation entre les utilisateurs tourne autour d’un LIEU. 
@@ -23,5 +24,4 @@ La liste des villes et départements ont été injectés dans la BDD à partir d
 Les images uploadées sont immédiatement compressées (ImageCompressionService) afin d’alléger au maximum la BDD.
 
 L'optimisation du code HTML en terme de référencement et de choix de balises adaptées n'a pas encore été géré.
-
 
